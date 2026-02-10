@@ -26,6 +26,7 @@ public class UserController {
 
     @PostMapping("/users/join")
     @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
     public Long createUser(@RequestBody UserDto dto){
         User user = dto.toEntity();
         userService.join(user);

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -35,4 +36,9 @@ public class UserService {
     }
 
     public List<User> findUsers(){return userRepository.findAll();}
+
+    public Optional<User> findOne(Long findId){
+        return userRepository.findById(findId);
+    }
+
 }
