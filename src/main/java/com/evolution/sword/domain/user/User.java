@@ -1,9 +1,20 @@
-package com.evolution.sword.domain;
+package com.evolution.sword.domain.user;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private Long gold;
+
+    private User(Builder builder){
+        this.username = builder.username;
+        this.gold = builder.gold;
+    }
 
     public Long getId() {
         return id;
@@ -33,5 +44,26 @@ public class User {
         this.gold -= cost;
     }
 
+    public static class Builder{
+        private String username;
+        private Long gold;
 
+        public Builder username(String username){
+            this.username = username;
+            return this;
+        }
+
+        public Builder gold(Long gold){
+            this.gold = gold;
+            return this;
+        }
+
+        public User build(){
+            return new User(this);
+        }
+    }
+
+    public static Builder builder(){
+        return new Builder();
+    }
 }

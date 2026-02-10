@@ -5,10 +5,7 @@ import com.evolution.sword.domain.user.UserDto;
 import com.evolution.sword.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,11 +25,10 @@ public class UserController {
     }
 
     @PostMapping("/users/join")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public void createUser(UserDto dto){
-        User user = new User();
-        user.setUsername(dto.getUsername());
+    @ResponseStatus(HttpStatus.CREATED)
+    public Long createUser(@RequestBody UserDto dto){
+        User user = dto.toEntity();
         userService.join(user);
-        return;
+        return user.getId();
     }
 }

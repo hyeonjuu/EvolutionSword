@@ -10,4 +10,11 @@ public class UserDto {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public User toEntity(){
+        return User.builder()
+                .username(this.username)
+                .gold(60000L)
+                .build();
+    }
 }
