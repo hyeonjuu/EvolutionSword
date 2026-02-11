@@ -2,7 +2,7 @@ package com.evolution.sword.domain;
 
 public enum ItemType {
     SWORD("Sword"),
-    STICK("Stick"),
+    CLUB("Club"),
     HIDDEN("hidden");
 
     private final String description;
