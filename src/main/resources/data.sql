@@ -17,3 +17,15 @@ INSERT INTO item_metadata (name, item_type, path_id, enhancement_level) VALUES (
 INSERT INTO item_metadata (name, item_type, path_id, enhancement_level) VALUES ('벼락 맞은 나뭇가지', 'CLUB', 4, 1);
 INSERT INTO item_metadata (name, item_type, path_id, enhancement_level) VALUES ('진동하는 강철봉', 'CLUB', 4, 2);
 INSERT INTO item_metadata (name, item_type, path_id, enhancement_level) VALUES ('천둥의 파괴 방망이', 'CLUB', 4, 3);
+
+
+
+-- [SWORD] 검 강화 데이터
+INSERT INTO enhancement_rate (item_type, item_level, success_rate, cost) VALUES ('SWORD', 1, 1.0, 1000);
+INSERT INTO enhancement_rate (item_type, item_level, success_rate, cost) VALUES ('SWORD', 2, 0.8, 2000);
+INSERT INTO enhancement_rate (item_type, item_level, success_rate, cost) VALUES ('SWORD', 3, 0.6, 4000);
+
+-- [CLUB] 몽둥이 강화 데이터
+INSERT INTO enhancement_rate (item_type, item_level, success_rate, cost) VALUES ('CLUB', 1, 1.0, 800);
+INSERT INTO enhancement_rate (item_type, item_level, success_rate, cost) VALUES ('CLUB', 2, 0.9, 1500);
+INSERT INTO enhancement_rate (item_type, item_level, success_rate, cost) VALUES ('CLUB', 3, 0.7, 3000);
