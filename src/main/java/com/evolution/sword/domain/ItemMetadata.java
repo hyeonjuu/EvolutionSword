@@ -1,9 +1,21 @@
 package com.evolution.sword.domain;
 
+import jakarta.persistence.*;
+
+@Entity
 public class ItemMetadata {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
+    @Enumerated(EnumType.STRING)
     private ItemType itemType;
-    private Long pathId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "path_id")
+    private ItemPath itemPath;
+
     private Integer enhancementLevel;
 }

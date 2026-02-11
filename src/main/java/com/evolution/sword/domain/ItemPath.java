@@ -1,10 +1,20 @@
 package com.evolution.sword.domain;
 
-public class ItemPath {
-    private Long id;
-    private String pathCode;
-    private String name;
-    private String description;
+import jakarta.persistence.*;
 
+@Entity
+public class ItemPath {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(unique = true)
+    private String pathCode;
+
+    @Enumerated(EnumType.STRING)
     private ItemType itemType;
+
+    private String name;
+
+    private String description;
 }
