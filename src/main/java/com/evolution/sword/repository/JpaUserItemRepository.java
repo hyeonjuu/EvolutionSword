@@ -39,6 +39,11 @@ public class JpaUserItemRepository implements UserItemRepository{
 
     @Override
     public void deleteByUserId(Long userId) {
-        em.remove(findByUserId(userId));
+//        em.remove(findByUserId(userId));
+
+//        findByUserId(userId).ifPresent(userItem -> {
+//            em.remove(userItem);
+//        });
+        findByUserId(userId).ifPresent(em::remove); //람다 메서드 참조
     }
 }
