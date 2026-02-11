@@ -39,8 +39,6 @@ public class JpaUserItemRepository implements UserItemRepository{
 
     @Override
     public void deleteByUserId(Long userId) {
-        em.createQuery("delete from UserItem ui where ui.user.id = :userId")
-                .setParameter("userId",userId)
-                .executeUpdate();
+        em.remove(findByUserId(userId));
     }
 }

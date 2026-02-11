@@ -2,8 +2,13 @@ package com.evolution.sword.domain.user;
 
 import com.evolution.sword.domain.ItemMetadata;
 import jakarta.persistence.*;
+import org.hibernate.annotations.SoftDelete;
+import org.hibernate.annotations.SoftDeleteType;
+
+import java.time.LocalDateTime;
 
 @Entity
+@SoftDelete(strategy = SoftDeleteType.TIMESTAMP,columnName = "deleted_at")
 public class UserItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,4 +23,5 @@ public class UserItem {
     private ItemMetadata itemMetadata;
 
     private Integer currentLevel;
+
 }
