@@ -5,4 +5,6 @@ public class ItemPath {
     private String pathCode;
     private String name;
     private String description;
+
+    private ItemType itemType;
 }
