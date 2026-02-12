@@ -16,4 +16,12 @@ public class EnhancementRate {
     private Double successRate;
 
     private Long cost;
+
+    public Long getCost() {
+        return cost;
+    }
+
+    public Double getSuccessRate() {
+        return successRate;
+    }
 }

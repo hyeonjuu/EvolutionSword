@@ -18,4 +18,12 @@ public class ItemMetadata {
     private ItemPath itemPath;
 
     private Integer enhancementLevel;
+
+    public Integer getEnhancementLevel() {
+        return enhancementLevel;
+    }
+
+    public ItemType getItemType() {
+        return itemType;
+    }
 }
