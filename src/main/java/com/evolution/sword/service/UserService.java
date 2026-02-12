@@ -16,9 +16,12 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    private final UserItemService userItemService;
+
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, UserItemService userItemService) {
         this.userRepository = userRepository;
+        this.userItemService = userItemService;
     }
 
     public Long join(User user){
@@ -26,6 +29,7 @@ public class UserService {
 
         user.setGold(60000L);
         userRepository.save(user);
+        userItemService.giveBaseItem(user.getId());
         return user.getId();
     }
 
