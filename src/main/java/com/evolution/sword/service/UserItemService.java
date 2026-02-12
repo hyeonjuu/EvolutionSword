@@ -9,6 +9,7 @@ import com.evolution.sword.exception.MaxLevelReachedException;
 import com.evolution.sword.repository.EnhancementRateRepository;
 import com.evolution.sword.repository.ItemMetadataRepository;
 import com.evolution.sword.repository.UserItemRepository;
+import com.evolution.sword.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,8 +19,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserItemService {
 
     @Autowired
-    private UserService userService;
-
+//    private UserService userService;
+    private UserRepository userRepository;
     @Autowired
     private UserItemRepository userItemRepository;
 
@@ -43,7 +44,7 @@ public class UserItemService {
     public void giveBaseItem(Long userId){
         ItemMetadata baseMetadata = itemMetadataRepository.findByItemPath_PathCodeAndEnhancementLevel("S_DEFAULT",0)
                 .orElseThrow(()->new EntityNotFoundException("기본 아이템 정보를 찾을 수 없습니다."));
-        User user = userService.findOne(userId).orElseThrow(EntityNotFoundException::new);
+        User user = userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
 
         UserItem baseItem = UserItem.createBaseItem(user,baseMetadata);
         giveItem(userId,baseItem);
@@ -51,7 +52,7 @@ public class UserItemService {
 
     public UserItem upgrade(Long userId){
         // 1. user, userItem 조회
-        User user = userService.findOne(userId).orElseThrow(()-> new EntityNotFoundException("사용자를 찾을 수 없습니다."));
+        User user = userRepository.findById(userId).orElseThrow(()-> new EntityNotFoundException("사용자를 찾을 수 없습니다."));
         UserItem userItem = userItemRepository.findByUserId(userId).orElseThrow(()->{
             //giveBaseItem(userId);
             return new EntityNotFoundException("강화할 아이템이 없습니다.");
@@ -75,6 +76,9 @@ public class UserItemService {
     public ItemMetadata getNextItemMetadata(UserItem userItem){
         //실제론 현재 아이템의 다음 메타데이터를 조회
         return new ItemMetadata();
+    }
+
+    public void sell(){
 
     }
 
