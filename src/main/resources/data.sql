@@ -29,3 +29,18 @@ INSERT INTO enhancement_rate (item_type, target_level, success_rate, cost) VALUE
 INSERT INTO enhancement_rate (item_type, target_level, success_rate, cost) VALUES ('CLUB', 1, 1.0, 800);
 INSERT INTO enhancement_rate (item_type, target_level, success_rate, cost) VALUES ('CLUB', 2, 0.9, 1500);
 INSERT INTO enhancement_rate (item_type, target_level, success_rate, cost) VALUES ('CLUB', 3, 0.7, 3000);
+
+-- [ItemPath] 0강 무기들을 위한 기본 경로 (분기 전 상태)
+INSERT INTO item_path (path_code, name, item_type, description)
+VALUES ('S_DEFAULT', '훈련용 검 경로', 'SWORD', '모든 검사 전직의 시작점');
+
+INSERT INTO item_path (path_code, name, item_type, description)
+VALUES ('C_DEFAULT', '낡은 몽둥이 경로', 'CLUB', '모든 파괴자 전직의 시작점');
+
+-- [ItemMetadata] 0강 기본 무기 (enhancement_level = 0)
+-- 이 아이템들이 UserItemService.giveBaseItem()에서 사용될 대상입니다.
+INSERT INTO item_metadata (name, item_type, path_id, enhancement_level)
+VALUES ('녹슨 연습용 검', 'SWORD', (SELECT id FROM item_path WHERE path_code = 'S_DEFAULT'), 0);
+
+INSERT INTO item_metadata (name, item_type, path_id, enhancement_level)
+VALUES ('굴러다니던 통나무', 'CLUB', (SELECT id FROM item_path WHERE path_code = 'C_DEFAULT'), 0);
