@@ -1,5 +1,6 @@
 package com.evolution.sword.domain.user;
 
+import com.evolution.sword.exception.InsufficientGoldException;
 import jakarta.persistence.*;
 
 @Entity
@@ -41,6 +42,9 @@ public class User {
     }
 
     public void useGold(Long cost){
+        if(this.gold < cost){
+            throw new InsufficientGoldException();
+        }
         this.gold -= cost;
     }
 
